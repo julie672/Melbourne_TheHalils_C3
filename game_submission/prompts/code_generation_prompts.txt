@@ -1,0 +1,1 @@
+Implement a 6×6 board game in vanilla JS: roll die, move pawn, resolve tiles by category (event/action/quiz). Track Skin Health, SunSmart, Exposure in [0,30]. Add clamping, a single win/lose check, and a result modal. Separate data (cards) from UI helpers. Accessible buttons and ARIA live region for card text.

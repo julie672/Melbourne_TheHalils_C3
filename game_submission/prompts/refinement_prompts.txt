@@ -1,0 +1,1 @@
+Refactor game.js: isolate card pickers, unify applyEffect(delta), add delta flash in UI, prevent double-roll during resolution, and ensure meters and pawn re-render atomically. Improve focus management after dialogs for keyboard users.
