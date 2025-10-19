@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SunSafe Sprint — Beat the Burn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Menu Screen -->
+  <section id="menu" class="screen">
+    <div class="menu-card">
+      <img src="assets/logo.png" alt="SunSafe Sprint logo" class="logo" onerror="this.style.display='none'">
+      <h1>SunSafe Sprint</h1>
+      <p class="tagline">Roll the die. Make SunSmart choices. Beat the burn.</p>
+      <button id="startBtn" class="btn primary">Start Game</button>
+      <details class="about">
+        <summary>About</summary>
+        <p>A short, educational dice game about sun safety and melanoma awareness in Australia. This is general education, not medical advice.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Play Screen -->
+  <section id="play" class="screen hidden">
+    <header class="topbar">
+      <h2>SunSafe Sprint</h2>
+      <button id="restartBtn" class="btn ghost" aria-label="Restart game">↺ Restart</button>
+    </header>
+
+    <main class="game-layout">
+      <!-- Board -->
+      <div id="board" class="board" role="grid" aria-label="Game board"></div>
+
+      <!-- Sidebar: meters + controls + card -->
+      <aside class="sidebar">
+        <div class="meters">
+          <div class="meter">
+            <div class="meter-label">Skin Health</div>
+            <div class="meter-bar"><div id="meterSH" class="bar bar-sh" style="width: 66%"></div></div>
+            <div id="meterSHVal" class="meter-value">20 / 30</div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">SunSmart</div>
+            <div class="meter-bar"><div id="meterSS" class="bar bar-ss" style="width: 33%"></div></div>
+            <div id="meterSSVal" class="meter-value">10 / 30</div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">Exposure</div>
+            <div class="meter-bar"><div id="meterEX" class="bar bar-ex" style="width: 20%"></div></div>
+            <div id="meterEXVal" class="meter-value">6 / 30</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="rollBtn" class="btn primary" aria-label="Roll the die">🎲 Roll</button>
+          <span id="rollResult" class="roll" aria-live="polite">–</span>
+        </div>
+
+        <div id="card" class="card" aria-live="polite">
+          <h3 id="cardTitle">Welcome!</h3>
+          <p id="cardText">Roll to begin your coastal walk. Stay SunSmart!</p>
+          <div id="cardActions" class="card-actions"></div>
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <!-- Result Modal -->
+  <dialog id="resultModal" class="modal" aria-labelledby="resultTitle">
+    <div class="modal-body">
+      <h3 id="resultTitle">You Win!</h3>
+      <p id="resultMsg"></p>
+      <button id="closeModal" class="btn primary">Back to Menu</button>
+    </div>
+  </dialog>
+
+  <audio id="sfxDice" src="assets/sfx-dice.mp3" preload="auto"></audio>
+  <script src="game.js"></script>
+</body>
+</html>

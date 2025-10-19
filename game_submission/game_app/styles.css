@@ -1,0 +1,111 @@
+:root{
+  --bg:#0f172a;         /* slate-900 */
+  --panel:#111827;      /* gray-900 */
+  --ink:#e5e7eb;        /* gray-200 */
+  --muted:#9ca3af;      /* gray-400 */
+  --brand:#f59e0b;      /* amber-500 */
+  --accent:#10b981;     /* emerald-500 */
+  --warn:#ef4444;       /* red-500 */
+  --card:#1f2937;       /* gray-800 */
+  --tile:#1f2937;
+  --event:#f59e0b33;    /* amber tint */
+  --action:#10b98133;   /* green tint */
+  --quiz:#3b82f633;     /* blue tint */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:system-ui,Segoe UI,Roboto,Inter,Arial;
+  background:linear-gradient(180deg,#0b1225,var(--bg));
+  color:var(--ink);
+}
+
+/* Screens */
+.screen{display:grid; place-items:center; min-height:100vh; padding:24px}
+.hidden{display:none}
+
+.menu-card{
+  background:var(--panel); border:1px solid #1f2937; border-radius:16px;
+  padding:32px; width:min(680px,96%); text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.logo{width:84px; height:84px; margin-bottom:12px}
+h1{margin:0 0 8px}
+.tagline{color:var(--muted); margin:4px 0 20px}
+
+.btn{
+  border:1px solid #374151; background:#111827; color:var(--ink);
+  padding:10px 16px; border-radius:10px; cursor:pointer; font-weight:600;
+}
+.btn.primary{background:var(--brand); border-color:#d97706; color:#111}
+.btn.primary:hover{filter:brightness(.95)}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.6; cursor:not-allowed}
+
+.about{margin-top:16px; text-align:left; color:var(--muted)}
+.about > summary{cursor:pointer; margin-bottom:8px}
+
+.topbar{
+  position:sticky; top:0; display:flex; justify-content:space-between; align-items:center;
+  background:transparent; padding:8px 0 16px; width:min(1200px,96%);
+}
+
+.game-layout{
+  display:grid; gap:18px; grid-template-columns: 1fr 340px;
+  width:min(1200px,96%); align-items:start;
+}
+
+.board{
+  display:grid; grid-template-columns: repeat(6, 1fr);
+  gap:10px; padding:10px; background:rgba(255,255,255,.02);
+  border:1px solid #1f2937; border-radius:16px;
+}
+.tile{
+  aspect-ratio:1/1; display:grid; place-items:center; border-radius:12px;
+  background:var(--tile); border:1px dashed #2b3648; position:relative;
+  font-size:14px; color:var(--muted);
+}
+.tile.event{background:linear-gradient(180deg,var(--tile),var(--event))}
+.tile.action{background:linear-gradient(180deg,var(--tile),var(--action))}
+.tile.quiz{background:linear-gradient(180deg,var(--tile),var(--quiz))}
+.tile.start, .tile.finish{border:2px solid var(--brand); color:#fff}
+.tile .index{position:absolute; top:6px; left:8px; font-size:12px; color:#6b7280}
+.pawn{
+  width:22px; height:22px; border-radius:50%; background:var(--accent);
+  border:2px solid #064e3b; box-shadow:0 6px 16px rgba(16,185,129,.4);
+}
+
+.sidebar{display:grid; gap:14px}
+
+.meters{display:grid; gap:10px; background:rgba(255,255,255,.02); padding:12px; border-radius:12px; border:1px solid #1f2937}
+.meter-label{font-size:13px; color:var(--muted); margin-bottom:6px}
+.meter-bar{height:10px; background:#0b1225; border-radius:999px; overflow:hidden; border:1px solid #1f2937}
+.bar{height:100%}
+.bar-sh{background:linear-gradient(90deg,#67e8f9,#06b6d4)}
+.bar-ss{background:linear-gradient(90deg,#a7f3d0,#10b981)}
+.bar-ex{background:linear-gradient(90deg,#fca5a5,#ef4444)}
+.meter-value{font-size:12px; color:#cbd5e1; margin-top:4px}
+
+.controls{display:flex; align-items:center; gap:10px}
+.roll{font-variant-numeric:tabular-nums; color:#cbd5e1}
+
+.card{
+  background:var(--card); border:1px solid #1f2937; border-radius:12px; padding:14px;
+  min-height:160px;
+}
+.card h3{margin:0 0 6px}
+.card p{margin:0 0 10px; color:#d1d5db}
+.card-actions{display:flex; gap:8px; flex-wrap:wrap}
+
+.modal{border:0; border-radius:16px; padding:0; background:transparent}
+.modal::backdrop{background:rgba(0,0,0,.6)}
+.modal-body{
+  background:var(--panel); border:1px solid #1f2937; border-radius:16px; padding:22px;
+  width:min(520px,90vw); text-align:center; color:var(--ink)
+}
+
+/* Small screens */
+@media (max-width: 860px){
+  .game-layout{grid-template-columns: 1fr}
+}
