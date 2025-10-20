@@ -105,4 +105,4 @@ Restart → resets the game anytime.
 
 Developed by Team Melbourne_TheHalils_C3
 
-Built with 💛 and coral-inspired gradients for the Vibe Coding Challenge 3 — Play to Impact (2025)
+Built with love and coral-inspired gradients for the Vibe Coding Challenge 3 — Play to Impact (2025)
