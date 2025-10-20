@@ -29,14 +29,44 @@ html, body {
 /* --- MENU --- */
 .black-neon {
   background: #0a0a0a;
-  border: 3px solid var(--purple);
   border-radius: 20px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 0 40px rgba(168,85,247,0.8);
   color: #fff;
   max-width: 600px;
+
+  /* Gradient border + neon glow */
+  position: relative;
+  z-index: 0;
 }
+
+.black-neon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px; /* border thickness */
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+
+  /* ✅ Use both standard and prefixed mask for compatibility */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+
+  z-index: -1;
+}
+
+.black-neon {
+  box-shadow:
+    0 0 20px rgba(168,85,247,0.7),  /* purple glow */
+    0 0 30px rgba(236,72,153,0.5);  /* pink glow */
+}
+
 .black-neon h1 {
   font-size: 2.2em;
   background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
@@ -44,7 +74,12 @@ html, body {
   background-clip: text;
   color: transparent;
 }
-.tagline { margin: 10px 0 24px; font-weight: 500; }
+
+.tagline {
+  margin: 10px 0 24px;
+  font-weight: 500;
+}
+
 
 /* BUTTONS */
 .btn {
@@ -86,19 +121,34 @@ html, body {
   color: var(--pink);
 }
 .progress-container {
-  height: 14px;
+  position: relative; /* ✨ This keeps the avatar positioned inside the bar */
+  height: 20px;
   background: rgba(255,255,255,0.15);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   width: 80%;
   margin: auto;
 }
+
 .progress-bar {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
   transition: width 0.4s ease;
 }
+
+.progress-avatar {
+  position: absolute;
+  top: -6px; /* Moves avatar above the bar */
+  left: 0;
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 0 10px var(--yellow));
+  animation: bob 1.4s ease-in-out infinite;
+  transition: left 0.4s ease;
+  pointer-events: none; /* avoids blocking clicks */
+}
+
 
 /* CARD (center the question and answers perfectly) */
 .card {

@@ -80,7 +80,8 @@ const sounds = {
   correct: new Audio("assets/sounds/correct answer.mp3"),
   wrong: new Audio("assets/sounds/wrong answer.mp3"),
   win: new Audio("assets/sounds/win.mp3"),
-  start: new Audio("assets/sounds/start.mp3")
+  start: new Audio("assets/sounds/start.mp3"),
+  move: new Audio("assets/sounds/move.mp3")
 };
 
 /* ---------- Setup ---------- */
@@ -125,8 +126,16 @@ function renderAvatar() {
 
 /* ---------- Game Logic ---------- */
 function updateProgress() {
-  els.progress.style.width = Math.min((state.pos / LAST) * 100, 100) + "%";
+  const percent = Math.min((state.pos / LAST) * 100, 100);
+  els.progress.style.width = percent + "%";
+
+  // Move sun avatar along the progress bar
+  const avatar = document.getElementById("progress-avatar");
+  if (avatar) {
+    avatar.style.left = `calc(${percent}% - 18px)`; // centers avatar relative to bar position
+  }
 }
+
 
 function updateUI() {
   els.rollBtn.disabled = state.rollingLocked;
@@ -154,6 +163,8 @@ function rollDie() {
 }
 
 function movePlayer() {
+  sounds.move.currentTime = 0;
+  sounds.move.play();
   els.moveBtn.classList.add("hidden");
   state.pos = Math.min(state.pos + rolledVal, LAST);
   renderAvatar();
