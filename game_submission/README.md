@@ -1,5 +1,5 @@
 Melbourne_TheHalils_C3
-SunSafe Sprint — Neon Reef Edition ☀️🌊
+SunSafe Sprint ☀️🌊
 
 A lightweight, browser-based educational board game that raises awareness about skin cancer and sun safety in Australia.
 Roll the die, move your cheerful sun avatar across the glowing coral reef, and answer SunSmart questions to reach the finish line before time runs out!
