@@ -75,6 +75,14 @@ const els = {
   modalClose: $("#closeModal")
 };
 
+const sounds = {
+  roll: new Audio("assets/sounds/rolling dice.mp3"),
+  correct: new Audio("assets/sounds/correct answer.mp3"),
+  wrong: new Audio("assets/sounds/wrong answer.mp3"),
+  win: new Audio("assets/sounds/win.mp3"),
+  start: new Audio("assets/sounds/start.mp3")
+};
+
 /* ---------- Setup ---------- */
 function initGame() {
   state.pos = 0;
@@ -132,6 +140,8 @@ function rollDie() {
   els.rollResult.textContent = "🎲";
   rolledVal = 0;
   let ticks = 0;
+  sounds.roll.currentTime = 0;
+  sounds.roll.play();
   const interval = setInterval(() => {
     rolledVal = Math.floor(Math.random() * 6) + 1;
     els.rollResult.textContent = rolledVal;
@@ -182,6 +192,8 @@ function showQuestion(first) {
 function handleAnswer(correct) {
   state.questionsAnswered++;
   if (correct) {
+    sounds.correct.currentTime = 0;
+    sounds.correct.play();
     state.score++;
     els.cardTitle.textContent = "✅ Correct!";
     els.cardText.textContent = "Press Roll to continue!";
@@ -190,6 +202,8 @@ function handleAnswer(correct) {
     updateUI();
     if (state.pos === LAST) finishGame();
   } else {
+    sounds.wrong.currentTime = 0;
+    sounds.wrong.play();
     els.cardTitle.textContent = "❌ Try Again";
     els.cardText.textContent = "Pick the right answer to unlock rolling.";
   }
@@ -206,9 +220,11 @@ function finishGame() {
   els.progress.style.background = "linear-gradient(90deg, #3b82f6, #a855f7, #ec4899, #facc15)";
 
   const pct = Math.round((state.score / (state.questionsAnswered || 1)) * 100);
+  sounds.win.currentTime = 0;
+  sounds.win.play();
   setTimeout(() => {
     showResult(
-      pct >= 80 ? "You Win! You scored higher than 80%" : "Game Over",
+      pct >= 80 ? "You Win! You scored higher than 80%" : "Game Over! Try aim for 85%",
       `You answered ${state.score}/${state.questionsAnswered} correctly (${pct}%).`
     );
   }, 1200);
@@ -223,10 +239,13 @@ function showResult(title, msg) {
 
 /* ---------- Navigation ---------- */
 els.startBtn.onclick = () => {
+  sounds.start.currentTime = 0;
+  sounds.start.play();
   els.menu.classList.add("hidden");
   els.play.classList.remove("hidden");
   initGame();
 };
+
 els.restartBtn.onclick = initGame;
 els.rollBtn.onclick = rollDie;
 els.moveBtn.onclick = movePlayer;
